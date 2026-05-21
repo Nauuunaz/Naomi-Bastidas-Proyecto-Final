@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio Naomi Bastidas | Dirección y Gestión Empresarial</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* PALETA DE COLORES: Negro absoluto, fondo de tarjetas gris muy oscuro, acentos rosa viejo y vino */
+        :root {
+            --black: #000000;
+            --dark-bg: #0a0a0a;
+            --card-bg: #111111;
+            --rose-pink: #d4a5b8;
+            --rose-glow: rgba(212, 165, 184, 0.12);
+            --burgundy: #4a131e;
+            --white: #ffffff;
+            --grey-text: #b0b0b0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--black);
+            color: var(--white);
+            font-family: 'Urbanist', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* MENÚ DE NAVEGACIÓN */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 25px 8%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        nav .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            letter-spacing: 2px;
+            color: var(--white);
+        }
+
+        nav .logo span {
+            color: var(--rose-pink);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+        }
+
+        nav ul li a {
+            color: var(--grey-text);
+            text-decoration: none;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--rose-pink);
+        }
+
+        /* ESTRUCTURA GENERAL DE SECCIONES */
+        section {
+            padding: 140px 10% 100px 10%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            color: var(--rose-pink);
+            margin-bottom: 50px;
+            position: relative;
+            font-weight: 400;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--rose-pink);
+        }
+
+        /* EFECTO DE LUZ INTERACTIVA DE FONDO */
+        .glow-bg {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--rose-glow) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* 1. SECCIÓN INICIO */
+        #inicio {
+            background: radial-gradient(circle at 80% 20%, #12090b 0%, var(--black) 100%);
+            align-items: flex-start;
+        }
+
+        .hero-container {
+            max-width: 800px;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 6px 18px;
+            background-color: var(--burgundy);
+            color: var(--rose-pink);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            border-radius: 50px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(212, 165, 184, 0.2);
+        }
+
+        #inicio h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 90px;
+            line-height: 1.05;
+            font-weight: 400;
+            margin-bottom: 20px;
+        }
+
+        #inicio h1 span {
+            color: transparent;
+            -webkit-text-stroke: 1px var(--rose-pink);
+        }
+
+        .hero-subtitle {
+            font-size: 18px;
+            color: var(--grey-text);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-top: 10px;
+        }
+
+        /* TEXTO EDITORIAL (PARA SOBRE MÍ, CARRERA Y UNIVERSIDAD) */
+        .editorial-text {
+            font-size: 20px;
+            color: var(--grey-text);
+            max-width: 850px;
+            text-align: justify;
+            z-index: 1;
+        }
+
+        .editorial-text span.highlight {
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        /* 3. TARJETAS DE LA CARRERA */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+            z-index: 1;
+        }
+
+        .info-card {
+            background-color: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            padding: 40px;
+            border-radius: 8px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .info-card:hover {
+            border-color: var(--rose-pink);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+        }
+
+        .info-card i {
+            font-size: 30px;
+            color: var(--rose-pink);
+            margin-bottom: 25px;
+            display: block;
+        }
+
+        .info-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        .info-card p {
+            font-size: 17px;
+            color: var(--grey-text);
+        }
+
+        /* 5. PENSUM INTERACTIVO (EFECTO ACORDEÓN) */
+        .pensum-container {
+            max-width: 900px;
+            margin-top: 20px;
+            z-index: 1;
+        }
+
+        .pensum-item {
+            background-color: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            margin-bottom: 15px;
+            border-radius: 6px;
+            overflow: hidden;
+            transition: border-color 0.3s ease;
+        }
+
+        .pensum-item:hover {
+            border-color: rgba(212, 165, 184, 0.4);
+        }
+
+        .pensum-trigger {
+            padding: 24px 35px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .pensum-trigger h3 {
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: var(--white);
+        }
+
+        .pensum-icon {
+            color: var(--rose-pink);
+            font-size: 18px;
+            transition: transform 0.3s ease;
+        }
+
+        .pensum-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        .pensum-content-inner {
+            padding: 0 35px 30px 35px;
+            color: var(--grey-text);
+            font-size: 18px;
+        }
+
+        /* Estado Activo del Acordeón */
+        .pensum-item.active .pensum-content {
+            max-height: 300px;
+        }
+
+        .pensum-item.active .pensum-icon {
+            transform: rotate(45deg);
+        }
+
+        .pensum-item.active {
+            border-color: var(--rose-pink);
+        }
+
+        /* BOTÓN DE ENLACE */
+        .btn-link {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 16px 35px;
+            background: transparent;
+            color: var(--rose-pink);
+            border: 1px solid var(--rose-pink);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            border-radius: 4px;
+        }
+
+        .btn-link:hover {
+            background-color: var(--rose-pink);
+            color: var(--black);
+            box-shadow: 0 0 25px var(--rose-glow);
+        }
+
+        /* 6. SECCIÓN VISIÓN FUTURA */
+        #vision {
+            background: linear-gradient(180deg, var(--black) 0%, #0d0507 100%);
+            text-align: center;
+            align-items: center;
+        }
+
+        .vision-wrapper {
+            max-width: 850px;
+            z-index: 1;
+        }
+
+        .quote-block {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            line-height: 1.4;
+            color: var(--white);
+            margin-bottom: 40px;
+            position: relative;
+            font-style: italic;
+        }
+
+        .quote-block span {
+            color: var(--rose-pink);
+        }
+
+        footer {
+            margin-top: 100px;
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.15);
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 768px) {
+            #inicio h1 { font-size: 55px; }
+            .section-title { font-size: 36px; }
+            .editorial-text { font-size: 17px; }
+            .quote-block { font-size: 24px; }
+            section { padding: 100px 6% 60px 6%; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">NB<span>.</span></div>
+        <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#sobre-mi">Sobre Mí</a></li>
+            <li><a href="#carrera">Carrera</a></li>
+            <li><a href="#universidad">Universidad</a></li>
+            <li><a href="#pensum">Plan de Estudio</a></li>
+            <li><a href="#vision">Visión</a></li>
+        </ul>
+    </nav>
+
+    <section id="inicio">
+        <div class="hero-container">
+            <div class="hero-badge">Portafolio Académico</div>
+            <h1>NAOMI<br><span>BASTIDAS</span></h1>
+            <div class="hero-subtitle">Dirección y Gestión Empresarial</div>
+        </div>
+    </section>
+
+    <section id="sobre-mi">
+        <div class="glow-bg" style="top: 10%; right: 5%;"></div>
+        <h2 class="section-title">Sobre Mí</h2>
+        <div class="editorial-text">
+            <p>Soy Naomi Bastidas, actualmente en la etapa final del bachillerato. A lo largo de mis experiencias y aprendizajes he descubierto mi interés por la <span class="highlight">creatividad, la iniciativa</span> y el desarrollo de ideas propias.</p>
+            <br>
+            <p>Me motiva la posibilidad de transformar ideas en proyectos reales y aportar orientación a quienes buscan estructurar sus propuestas. Considero importante la <span class="highlight">innovación constante</span>, ya que en un entorno cambiante cada proyecto necesita dirección, claridad y una correcta ejecución.</p>
+        </div>
+    </section>
+
+    <section id="carrera">
+        <div class="glow-bg" style="bottom: 10%; left: 5%;"></div>
+        <h2 class="section-title">La carrera</h2>
+        <div class="editorial-text" style="margin-bottom: 40px;">
+            <p style="font-family: 'Playfair Display', serif; font-size: 26px; color: var(--rose-pink); margin-bottom: 20px; font-style: italic;">Licenciatura en Dirección y Gestión Empresarial</p>
+        </div>
+        
+        <div class="cards-grid">
+            <div class="info-card">
+                <i class="fa-solid fa-folder-open"></i>
+                <h3>Estructura de Ideas</h3>
+                <p>He elegido la Licenciatura en Dirección y Gestión Empresarial porque me interesa comprender cómo se estructuran y desarrollan las ideas dentro de un entorno organizacional. Me atrae la posibilidad de participar en la construcción y guía de proyectos, ayudando a que las ideas no se queden solo en conceptos, sino que puedan convertirse en resultados concretos y sostenibles.</p>
+            </div>
+            <div class="info-card">
+                <i class="fa-solid fa-briefcase"></i>
+                <h3>Versatilidad y Oportunidades</h3>
+                <p>Esta carrera ofrece amplias oportunidades por su versatilidad dentro del mundo de los negocios, permitiendo desenvolverse tanto en empresas privadas como en el desarrollo de proyectos propios.</p>
+            </div>
+            <div class="info-card">
+                <i class="fa-solid fa-chart-line"></i>
+                <h3>Desarrollo Económico</h3>
+                <p>Además, tiene un papel fundamental en el desarrollo económico, ya que las empresas dependen de una buena gestión para crecer, mantenerse competitivas y adaptarse a los cambios del mercado.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="universidad">
+        <div class="glow-bg" style="top: 20%; right: 10%;"></div>
+        <h2 class="section-title">Universidad</h2>
+        <div class="editorial-text">
+            <p>Mi elección académica está dirigida al <span class="highlight">Instituto Tecnológico de Santo Domingo (INTEC)</span>, debido a su enfoque en la excelencia académica y la formación de profesionales con visión analítica e innovadora. Me interesa formar parte de una institución que impulse el pensamiento crítico y el desarrollo de habilidades aplicadas al mundo empresarial.</p>
+        </div>
+    </section>
+
+    <section id="pensum">
+        <h2 class="section-title">Plan de Estudio</h2>
+        <div class="editorial-text" style="margin-bottom: 30px;">
+            <p>Haz clic en las áreas curriculares para desplegar los pilares de formación profesional:</p>
+        </div>
+
+        <div class="pensum-container">
+            <div class="pensum-item active" onclick="togglePensum(this)">
+                <div class="pensum-trigger">
+                    <h3>Área de Formación de Negocios y Economía</h3>
+                    <div class="pensum-icon"><i class="fa-solid fa-plus"></i></div>
+                </div>
+                <div class="pensum-content">
+                    <div class="pensum-content-inner">
+                        Análisis cuantitativo aplicado, microeconomía, fundamentos de administración y estructuras organizacionales modernas orientadas al mercado global.
+                    </div>
+                </div>
+            </div>
+
+            <div class="pensum-item" onclick="togglePensum(this)">
+                <div class="pensum-trigger">
+                    <h3>Área de Estrategia, Gestión y Proyectos</h3>
+                    <div class="pensum-icon"><i class="fa-solid fa-plus"></i></div>
+                </div>
+                <div class="pensum-content">
+                    Dirección estratégica, finanzas corporativas, formulación de modelos de negocios, optimización de recursos y desarrollo sostenible de proyectos empresariales.
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <a href="https://www.intec.edu.do/oferta-academica/grado/economia-y-negocios/item/licenciatura-en-ingenieria-comercial#flipbook-6a0e8ec51035a_content/1/" target="_blank" class="btn-link">
+                Ver Pensum Oficial en INTEC <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i>
+            </a>
+        </div>
+    </section>
+
+    <section id="vision">
+        <div class="vision-wrapper">
+            <h2 class="section-title" style="display: none;">Visión Futura</h2>
+            <div class="quote-block">
+                "Desarrollarme en el área de la <span>Ingeniería Comercial</span>, aplicando estrategias que contribuyan al crecimiento de empresas y proyectos, con el objetivo de aportar soluciones innovadoras dentro del mundo de los negocios."
+            </div>
+            <div class="editorial-text" style="text-align: center; margin: 0 auto;">
+                <p>Aspiro a impulsar iniciativas que permitan a las empresas organizar y fortalecer sus ideas, transformándolas en proyectos sostenibles que generen nuevas oportunidades, promueven el desarrollo económico y aporten valor al entorno en el que se desarrollan.</p>
+            </div>
+        </div>
+
+        <footer>
+            Naomi Bastidas &copy; 2026 &bull; Portafolio Profesional
+        </footer>
+    </section>
+
+    <script>
+        function togglePensum(element) {
+            const items = document.querySelectorAll('.pensum-item');
+            items.forEach(item => {
+                if (item !== element) {
+                    item.classList.remove('active');
+                }
+            });
+            element.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
